@@ -8,8 +8,8 @@ const GET_WEATHER = 'GET_WEATHER'
 
 const getWeather = function(city) {
     const url =     `${BASE_URL}${city},us&APPID=${API_KEY}`
-    
     const request = axios.get(url)
+    
     return {
         type:       GET_WEATHER,
         payload:    request
