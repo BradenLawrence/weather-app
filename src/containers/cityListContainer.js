@@ -1,30 +1,42 @@
-import React, { Component }             from 'react'
-import { connect }                      from 'react-redux'
-import { Sparklines, SparklinesLine }   from 'react-sparklines'
+import React, { Component }     from 'react'
+import { connect }              from 'react-redux'
+import { Chart }                from '../components/chart';
 
 class CityList extends Component {
     renderWeather(cityData) {
         // Create arrays of our data
-        let temperatureList = cityData.list.map(listItem => listItem.main.temp)
+        let temperatureList = cityData.list.map(listItem => listItem.main.temp * 9/5 - 459.67)
         let pressureList    = cityData.list.map(listItem => listItem.main.pressure)
         let humidityList    = cityData.list.map(listItem => listItem.main.humidity)
         return (
             <tr key={ cityData.city.id }>
                 <td>{ cityData.city.name }</td>
                 <td>
-                    <Sparklines height={93} width={180} data={ temperatureList }>
-                        <SparklinesLine color="red"/>
-                    </Sparklines>
+                    <Chart  
+                        height  = {120} 
+                        width   = {180} 
+                        color   = 'red' 
+                        data    = { temperatureList } 
+                        unit    = 'F'
+                    />
                 </td>
                 <td>
-                    <Sparklines height={120} width={180} data={ pressureList }>
-                        <SparklinesLine color="green"/>
-                    </Sparklines>
+                    <Chart 
+                        height  = {120} 
+                        width   = {180} 
+                        color   = 'green' 
+                        data    = { pressureList }
+                        unit    = 'hPa'
+                    />
                 </td>
                 <td>
-                    <Sparklines height={120} width={180} data={ humidityList }>
-                        <SparklinesLine color="blue"/>
-                    </Sparklines>
+                    <Chart 
+                        height  = {120} 
+                        width   = {180} 
+                        color   = 'blue' 
+                        data    = { humidityList }
+                        unit    = '%'    
+                    /> 
                 </td>
             </tr>
         )
