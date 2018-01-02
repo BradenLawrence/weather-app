@@ -9,4 +9,10 @@ td, th {
 
 svg {
     height: 120px;
+    text-align: left;
+}
+
+td:first-of-type, td:first-of-type > div {
+    height: 120px;
+    width: 200px;
 }
